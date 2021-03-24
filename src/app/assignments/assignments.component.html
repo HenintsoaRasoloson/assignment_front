@@ -1,0 +1,44 @@
+<main class="container">
+  <a routerLink="/add" class="ajouterBtn">
+    <button mat-flat-button color="accent">
+      Ajouter un assignment
+    </button>
+  </a>
+  <h1>Liste des assignments</h1>
+  <mat-divider></mat-divider>
+  <nav>
+    <button mat-raised-button color="primary" (click)="premierePage()">
+      Première
+    </button>
+    <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="pagePrecedente()">
+      Prev
+    </button>
+    <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="pageSuivante()">
+      Suiv
+    </button>
+    <button mat-raised-button color="primary" (click)="dernierePage()">
+      Dernière
+    </button>
+  </nav>
+
+  <mat-list *ngFor="let a of assignments">
+    <nav>
+      <a routerLink="/assignment/{{a.id}}">
+        <h3 mat-subheader>{{a.dateDeRendu | date}}</h3>
+        <mat-list-item>
+          <mat-divider></mat-divider>
+
+          <p *ngIf="a.rendu; else nonsoumis" appRendu>
+            {{a.nom}}, rendu par l'élève.
+          </p>
+          <ng-template #nonsoumis>
+            <p appNonRendu>
+              {{a.nom}}, non encore rendu par l'élève.
+            </p>
+          </ng-template>
+
+        </mat-list-item>
+      </a>
+    </nav>
+  </mat-list>
+</main>
