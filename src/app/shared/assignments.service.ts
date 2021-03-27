@@ -82,6 +82,7 @@ export class AssignmentsService {
 
     return of("Service: assignment ajouté !");*/
 
+    console.log("eto le add", assignment)
     return this.http.post(this.uri, assignment);
   }
 
@@ -118,6 +119,7 @@ export class AssignmentsService {
       nouvelAssignment.id = a.id;
       nouvelAssignment.dateDeRendu = new Date(a.dateDeRendu);
       nouvelAssignment.rendu = a.rendu;
+
 
       this.addAssignment(nouvelAssignment)
       .subscribe(reponse => {
