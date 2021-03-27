@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
@@ -14,6 +15,9 @@ export class EditAssigmentComponent implements OnInit {
   // pour le formulaire
   nom = "";
   dateDeRendu = null;
+  auteur = '';
+  note = null;
+  remarques = null;
 
   constructor(
     private assignmentsService: AssignmentsService,
@@ -40,9 +44,13 @@ export class EditAssigmentComponent implements OnInit {
     console.log('Dans ngOnInit de details, id = ' + id);
     this.assignmentsService.getAssignment(id).subscribe((assignment) => {
       this.assignment = assignment;
-
+      console.log(this.assignment);
+      
       this.nom = assignment.nom;
       this.dateDeRendu = assignment.dateDeRendu;
+      this.auteur = assignment.auteur;
+      this.note = Number(assignment.note);
+      this.remarques = assignment.remarques;
     });
   }
 
@@ -53,6 +61,9 @@ export class EditAssigmentComponent implements OnInit {
 
     this.assignment.nom = this.nom;
     this.assignment.dateDeRendu = this.dateDeRendu;
+    this.assignment.auteur = this.auteur;
+    this.assignment.note = Number(this.note);
+    this.assignment.remarques = this.remarques;
 
     this.assignmentsService.updateAssignment(this.assignment)
       .subscribe(message => {
