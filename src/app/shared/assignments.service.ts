@@ -3,19 +3,32 @@ import { Injectable } from '@angular/core';
 import { forkJoin, Observable, of } from 'rxjs';
 import { catchError, filter, map, tap } from 'rxjs/operators';
 import { Assignment } from '../assignments/assignment.model';
+import { Subject } from '../subject/subject.model';
 import { LoggingService } from './logging.service';
 import { assignmentsGeneres } from './data';
+import { SubjectService } from '../shared/subject.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssignmentsService {
   assignments:Assignment[];
+  subjects:Subject[];
 
-  constructor(private loggingService:LoggingService, private http:HttpClient) { }
+  constructor(private loggingService:LoggingService,private SubjectService:SubjectService, private http:HttpClient) {
+    this.getSubject();
+   }
 
   uri = "http://localhost:8010/api/assignments";
   // uri = "https://backmadagascar2021.herokuapp.com/api/assignments"
+
+  getSubject(){
+    this.SubjectService.getSubjects()
+    .subscribe(data => {
+      this.subjects = data;
+      console.log("------------- Subjects'lists retrieved ----------------");
+    });
+  }
 
   getAssignments():Observable<Assignment[]> {
     console.log("Dans le service de gestion des assignments...")
@@ -73,6 +86,10 @@ export class AssignmentsService {
     return Math.round(Math.random()*100000);
   }
 
+  getRandomNumber(nbr:number):number {
+    return Math.round(Math.random()*nbr);
+  }
+
   addAssignment(assignment:Assignment):Observable<any> {
     assignment.id = this.generateId();
     //this.loggingService.log(assignment.nom, " a été ajouté");
@@ -111,38 +128,32 @@ export class AssignmentsService {
     return this.http.delete(this.uri + "/" + assignment._id);
 
   }
-
-  peuplerBD() {
-    assignmentsGeneres.forEach(a => {
-      let nouvelAssignment = new Assignment();
-      nouvelAssignment.nom = a.nom;
-      nouvelAssignment.id = a.id;
-      nouvelAssignment.dateDeRendu = new Date(a.dateDeRendu);
-      nouvelAssignment.rendu = a.rendu;
-
-
-      this.addAssignment(nouvelAssignment)
-      .subscribe(reponse => {
-        console.log(reponse.message);
-      })
-    })
-  }
-
-  // autre version qui permet de récupérer un subscribe une fois que tous les inserts
-  // ont été effectués
+ 
   peuplerBDAvecForkJoin(): Observable<any> {
-    const appelsVersAddAssignment = [];
+    const appelsVersAddAssignment = []; 
 
     assignmentsGeneres.forEach((a) => {
       const nouvelAssignment = new Assignment();
-
+      var randomid = this.getRandomNumber(this.subjects.length-1);
+    
       nouvelAssignment.id = a.id;
       nouvelAssignment.nom = a.nom;
       nouvelAssignment.dateDeRendu = new Date(a.dateDeRendu);
       nouvelAssignment.rendu = a.rendu;
+      nouvelAssignment.note = a.note;
+      nouvelAssignment.auteur = a.auteur;
+      nouvelAssignment.remarques = a.remarques;
+      var ma_matiere = new Subject();
+        ma_matiere.id = this.subjects[randomid].id;
+        ma_matiere.nom = this.subjects[randomid].nom;
+        ma_matiere.image_matiere = this.subjects[randomid].image_matiere;
+        ma_matiere.image_prof = this.subjects[randomid].image_prof;
+      nouvelAssignment.matiere = ma_matiere;
+      console.log("nouvelAssignment ",nouvelAssignment);
 
       appelsVersAddAssignment.push(this.addAssignment(nouvelAssignment));
     });
     return forkJoin(appelsVersAddAssignment); // renvoie un seul Observable pour dire que c'est fini
   }
+  
 }
