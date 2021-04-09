@@ -1,3 +1,5 @@
+import { Subject } from "../subject/subject.model";
+
 export class Assignment {
   _id?:string;
   id:number;
@@ -5,7 +7,7 @@ export class Assignment {
   dateDeRendu:Date;
   rendu:boolean;
   auteur:string;
-  matiere:string;
   note:number;
   remarques:string;
+  matiere : Subject;
 }
