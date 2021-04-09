@@ -26,6 +26,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EditAssigmentComponent } from './assignments/edit-assigment/edit-assigment.component';
 import { AuthGuard } from './shared/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { SubjectComponent } from './subject/subject.component';
 
 const routes:Routes = [
   {
@@ -61,7 +62,8 @@ const routes:Routes = [
     NonRenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
-    EditAssigmentComponent
+    EditAssigmentComponent,
+    SubjectComponent
   ],
   imports: [
     BrowserModule,
