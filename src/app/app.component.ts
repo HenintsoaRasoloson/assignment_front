@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AssignmentsService } from './shared/assignments.service';
+import { SubjectService } from './shared/subject.service';
 import { AuthService } from './shared/auth.service';
 
 @Component({
@@ -11,8 +12,10 @@ import { AuthService } from './shared/auth.service';
 export class AppComponent {
   title = 'Application de gestion des assignments';
 
-  constructor(private authService:AuthService, private router:Router,
-              private assignmentsService:AssignmentsService) {}
+  constructor(private authService:AuthService,
+            private SubjectService:SubjectService,
+            private router:Router,
+            private assignmentsService:AssignmentsService) {}
 
   login() {
     // si je suis pas loggé, je me loggue, sinon, si je suis
@@ -38,6 +41,13 @@ export class AppComponent {
     this.assignmentsService.peuplerBDAvecForkJoin()
       .subscribe(() => {
         console.log("LA BD A ETE PEUPLEE, TOUS LES ASSIGNMENTS AJOUTES, ON RE-AFFICHE LA LISTE");
+        this.router.navigate(["/home"], {replaceUrl:true});
+      })
+  }
+  peuplerBDSubject(){
+    this.SubjectService.peuplerBDSubjectAvecForkJoin()
+      .subscribe(() => {
+        console.log("LA BD A ETE PEUPLEE, TOUS LES SUBJECTS AJOUTES, ON RE-AFFICHE LA LISTE");
         this.router.navigate(["/home"], {replaceUrl:true});
       })
   }
