@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
+import { Subject } from '../subject/subject.model';
 
 @Component({
   selector: 'app-assignments',
@@ -10,6 +11,8 @@ import { Assignment } from './assignment.model';
 })
 export class AssignmentsComponent implements OnInit {
   assignments:Assignment[];
+  assignmentsRendu:Assignment[] = [];
+  assignmentsNonRendu:Assignment[] = [];
   page: number=1;
   limit: number=10;
   totalDocs: number;
@@ -49,8 +52,22 @@ export class AssignmentsComponent implements OnInit {
       this.prevPage = data.prevPage;
       this.hasNextPage = data.hasNextPage;
       this.nextPage = data.nextPage;
+      this.splitRendu();
       console.log("données reçues");
     });
+  }
+  splitRendu(){
+    console.log(this.assignments);  
+    this.assignments.forEach( a => {
+      if(a.rendu){
+        this.assignmentsRendu.push(a);
+      } 
+      else {
+        this.assignmentsNonRendu.push(a);
+      }
+    });
+    console.log(this.assignmentsNonRendu.length);
+    
   }
 
   onDeleteAssignment(event) {
