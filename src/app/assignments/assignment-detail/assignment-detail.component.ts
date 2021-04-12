@@ -76,4 +76,7 @@ export class AssignmentDetailComponent implements OnInit {
   isAdmin() {
     return this.authService.admin;
   }
+  isMarked(){
+    return (!this.assignmentTransmis.note == null) ? true :false;
+  }
 }
