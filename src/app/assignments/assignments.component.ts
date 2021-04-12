@@ -57,7 +57,8 @@ export class AssignmentsComponent implements OnInit {
     });
   }
   splitRendu(){
-    console.log(this.assignments);  
+    this.assignmentsRendu = [];
+    this.assignmentsNonRendu = [];
     this.assignments.forEach( a => {
       if(a.rendu){
         this.assignmentsRendu.push(a);
@@ -66,8 +67,6 @@ export class AssignmentsComponent implements OnInit {
         this.assignmentsNonRendu.push(a);
       }
     });
-    console.log(this.assignmentsNonRendu.length);
-    
   }
 
   onDeleteAssignment(event) {
