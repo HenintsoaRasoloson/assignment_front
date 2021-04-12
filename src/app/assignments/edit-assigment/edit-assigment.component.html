@@ -1,21 +1,50 @@
 <h2>Modification de l'assignment</h2>
 
 <form ngForm #formAssignment class="form" (submit)="onSubmit($event); formAssignment.reset();">
+<mat-vertical-stepper  #stepper>
+  <mat-step >
+      <ng-template matStepLabel>Nom du devoir</ng-template>
+      <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input matInput placeholder="Nom du devoir" required [(ngModel)]="nom" name="nom">
+      </mat-form-field>
+      <div>
+        <button type="button" mat-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+  <mat-step >
+    <ng-template matStepLabel>Auteur</ng-template>
+    <mat-form-field>
+      <mat-label>Auteur</mat-label>
+      <input matInput placeholder="Auteur" required [(ngModel)]="auteur" name="auteur">
+    </mat-form-field>
+    <div>
+      <button type="button" mat-button matStepperNext>Next</button>
+    </div>
+</mat-step>
+<mat-step >
+  <ng-template matStepLabel>Note</ng-template>
   <mat-form-field>
-    <input matInput placeholder="Nom du devoir" required [(ngModel)]="nom" name="nom">
+    <mat-label>Note</mat-label>
+    <input matInput type="number" min="0" max="20" placeholder="Notes"  [(ngModel)]="note" name="note" >
   </mat-form-field>
-
+  <div>
+    <button type="button" mat-button matStepperNext>Next</button>
+  </div>
+</mat-step>
+<mat-step >
+  <ng-template matStepLabel>Remarques</ng-template>
   <mat-form-field>
-    <input matInput placeholder="Auteur" required [(ngModel)]="auteur" name="auteur">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Notes" required [(ngModel)]="note" name="note">
-  </mat-form-field>
-  <mat-form-field>
-    <textarea matInput placeholder="Remarques"  [(ngModel)]="remarques" name="remarques">
+    <mat-label>Remarques</mat-label>
+    <textarea  matInput placeholder="Remarques"  [(ngModel)]="remarques" name="remarques">
     </textarea>
   </mat-form-field>
-
+  <div>
+    <button type="button" mat-button matStepperNext>Next</button>
+  </div>
+</mat-step>
+<mat-step >
+  <ng-template matStepLabel>Date de Rendu</ng-template>
   <mat-form-field appearance="fill">
     <mat-label>Choisissez une date</mat-label>
     <input matInput [matDatepicker]="picker" required [(ngModel)]="dateDeRendu" name="date">
@@ -24,8 +53,18 @@
 
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
-
-  <button mat-stroked-button color="primary">
-    Modifier le devoir
-  </button>
+  <div>
+    <button type="button" mat-button matStepperNext>Next</button>
+  </div>
+</mat-step>
+  
+  <mat-step>
+    <ng-template matStepLabel>Terminé</ng-template>
+    <p>C'est bon</p>
+    <div>
+      <button type="button" mat-button matStepperPrevious>Back</button>
+      <button  mat-stroked-button color="primary">Modifier le devoir</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
 </form>
