@@ -28,6 +28,7 @@ import { EditAssigmentComponent } from './assignments/edit-assigment/edit-assigm
 import { AuthGuard } from './shared/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { SubjectComponent } from './subject/subject.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 const routes:Routes = [
   {
@@ -75,6 +76,7 @@ const routes:Routes = [
     MatNativeDateModule, MatListModule, MatCardModule, MatCheckboxModule,
     MatSlideToggleModule,
     MatTabsModule,
+    MatStepperModule,
     RouterModule.forRoot(routes), HttpClientModule
   ],
   providers: [],
