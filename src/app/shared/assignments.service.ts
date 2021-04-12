@@ -19,8 +19,8 @@ export class AssignmentsService {
     this.getSubject();
    }
 
-  uri = "http://localhost:8010/api/assignments";
-  // uri = "https://backmadagascar2021.herokuapp.com/api/assignments"
+  // uri = "http://localhost:8010/api/assignments";
+  uri = "https://assignmentmbds2021-back.herokuapp.com/api/assignments"
 
   getSubject(){
     this.SubjectService.getSubjects()
