@@ -1,8 +1,8 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
+
 
 @Component({
   selector: 'app-edit-assigment',
@@ -11,7 +11,7 @@ import { Assignment } from '../assignment.model';
 })
 export class EditAssigmentComponent implements OnInit {
   assignment:Assignment;
-
+ 
   // pour le formulaire
   nom = "";
   dateDeRendu = null;
@@ -22,7 +22,8 @@ export class EditAssigmentComponent implements OnInit {
   constructor(
     private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +33,7 @@ export class EditAssigmentComponent implements OnInit {
 
     console.log(this.route.snapshot.queryParams);
     console.log(this.route.snapshot.fragment);
+    
 
     this.getAssignmentById();
   }
@@ -44,7 +46,7 @@ export class EditAssigmentComponent implements OnInit {
     console.log('Dans ngOnInit de details, id = ' + id);
     this.assignmentsService.getAssignment(id).subscribe((assignment) => {
       this.assignment = assignment;
-      console.log(this.assignment);
+      
       
       this.nom = assignment.nom;
       this.dateDeRendu = assignment.dateDeRendu;
@@ -62,9 +64,12 @@ export class EditAssigmentComponent implements OnInit {
     this.assignment.nom = this.nom;
     this.assignment.dateDeRendu = this.dateDeRendu;
     this.assignment.auteur = this.auteur;
-    this.assignment.note = Number(this.note);
+    this.assignment.note = (this.note == "" || this.note == null)? null : Number(this.note);
     this.assignment.remarques = this.remarques;
-
+    if(this.assignment.note == null){
+      this.assignment.rendu = false;
+    }
+    
     this.assignmentsService.updateAssignment(this.assignment)
       .subscribe(message => {
         console.log(message);
