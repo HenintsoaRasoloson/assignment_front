@@ -21,7 +21,7 @@
     </button>
   </nav>
   <mat-tab-group>
-    <mat-tab label="Non Rendu"> 
+    <mat-tab label="Non Rendu ({{assignmentsNonRendu.length}})"> 
       <mat-list *ngFor="let a of assignmentsNonRendu">
         <nav>
           <a routerLink="/assignment/{{a.id}}">
@@ -44,7 +44,7 @@
       </mat-list>
     </mat-tab>
     
-    <mat-tab label="Rendu"> 
+    <mat-tab label="Rendu ({{assignmentsRendu.length}})"> 
       <mat-list *ngFor="let a of assignmentsRendu">
       <nav>
         <a routerLink="/assignment/{{a.id}}">
