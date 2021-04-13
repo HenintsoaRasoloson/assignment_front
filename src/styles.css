@@ -1,4 +1,15 @@
+@import "./assets/vendor/icofont/icofont.min.css";
+@import "./assets/vendor/boxicons/css/boxicons.min.css";
+@import "./assets/vendor/owl.carousel/assets/owl.carousel.min.css";
+@import "./assets/vendor/venobox/venobox.css";
+@import "./assets/vendor/aos/aos.css";
+@import "./assets/css/style.css";
+@import "./assets/css/main.css";
+@import "./assets/vendor/mdi-font/css/material-design-iconic-font.min.css";
+@import "./assets/vendor/font-awesome-4.7/css/font-awesome.min.css";
+@import "./assets/vendor/select2/select2.min.css";
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 20px; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

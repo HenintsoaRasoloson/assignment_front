@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <mat-card *ngIf="assignmentTransmis">
     <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
     <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date}}</mat-card-subtitle>
@@ -16,4 +16,67 @@
       <button mat-stroked-button color="warn" (click)="onDelete()">DELETE</button>
     </div>
   </mat-card>
+</div> -->
+
+
+<div class="page-wrapper p-t-100 p-b-100 font-robo">
+  <div class="wrapper wrapper--w680">
+      <div class="card card-1">
+          <div class="card-heading"></div>
+          <div class="card-body">
+              <h2 class="title">D&eacute;tails</h2>
+              <form method="POST">
+                  <div class="input-group">
+                      <!-- <input class="input--style-1" type="text" placeholder="Nom de l'élève" name="name"> -->
+                      <input class="form-control" type="text" placeholder ="NOM DE L'ELEVE" value="{{assignmentTransmis.nom}}" name="nom"/> 
+                  </div>
+                  <div class="row row-space">
+                      <div class="col-md-6 col-lg-6">
+                          <div class="input-group">
+                              <!-- <input class="input--style-1 js-datepicker" type="text" placeholder="DATE" name="birthday"> -->
+                              <input class="form-control" type="text" placeholder="DATE" value="{{assignmentTransmis.dateDeRendu | date}}" name="date"/>
+                              <!-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> -->
+                          </div>
+                      </div>
+                      <div class="col-md-6 cl-lg-6">
+                          <div class="input-group">
+                                  <select name="gender" class="form-control"> 
+                                      <option disabled="disabled" selected="selected">Matière</option>
+                                      <option>Swift</option>
+                                      <option>SQL</option>
+                                      <option>Grails</option>
+                                  </select>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="input-group">
+                      <input class="form-control" type="textarea" placeholder="REMARQUE" name="remarque"/>
+                  </div>
+                  <div class="row row-space">
+                      <div class="col-md-6 col-lg-6">
+                          <div class="input-group">
+                              <input class="input--style-1" type="number" min="0" placeholder="NOTE" name="res_code">
+                          </div>
+                      </div>
+                      <div class="col-md-6 col-lg-6 justify-content-center">
+                       
+                          <button type="button" class="btn btn-success">RENDU</button>
+                            <!-- <input class="input--style-1" disabled type="text"  placeholder="RENDU" name="res_code"> -->
+                       
+                    </div>
+                  </div>
+                <div class="row ">
+                  <div class="col-md-6 col-lg-6 d-flex justify-content-center">
+                    <button class="btn btn-warning" type="submit">Modifier</button>
+                  </div>
+                  <div class="col-md-6 col-lg-6 d-flex justify-content-center">
+                    <button class="btn btn-danger" type="submit"> Supprimer</button>
+                  </div>
+                </div>
+              </form>
+          </div>
+      </div>
+  </div>
 </div>
+
+

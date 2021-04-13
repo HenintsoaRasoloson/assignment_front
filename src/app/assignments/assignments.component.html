@@ -1,4 +1,4 @@
-<main class="container">  
+<!-- <main class="container">  
   <a routerLink="/add" class="ajouterBtn">
     <button mat-flat-button color="accent">
       Ajouter un assignment
@@ -41,20 +41,56 @@
       </a>
     </nav>
   </mat-list>
-</main>
-
-<!-- <div class="container">
-  <div class="col-md-5 card mt-3">
-  <div class="row no-gutters">
-    <div class="col-md-3">
-      <img src="..." class="card-img" alt="...">
+</main> -->
+<section style="overflow: hidden;padding:0;">
+  <header id="header" class="fixed-to">
+    <div class="d-flex flex-column align-items-center">
+      <div class="row">
+        <h1 class="logo mr-auto">
+          <a href="index.html">
+            Assignment Management
+          </a>
+        </h1>
+      </div>
+      <br><br>
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="index.html">Assignments</a></li>
+          <li><a href="#about">Rendu / Non rendu</a></li>
+          <li class="align-self-end"><a>Profile</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="col-md-9">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+  </header>
+</section>
+  <main id="main">
+    <section id="featured-services" class="featured-services">
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+          <div *ngFor="let a of assignments" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-4">
+            <div class="icon-box w-100" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon">
+                <img src="../../assets/img/swift.svg" style="height:50px; width:50px; object-fit: fill;" alt="IOS" />
+              </div>
+              <h4 class="title"><a routerLink="/assignment/{{a.id}}" >{{a.nom}}</a></h4>
+              <h5>{{a.auteur}}</h5>
+              <p class="description">Date: {{a.dateDeRendu | date}}</p><br>
+              <p class="description">Professeur : <img class="rounded-circle" src="../../assets/img/Galli.jpg" style="height:30px; width:30px; object-fit: fill;" alt="Prof"/> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="footer">
+    <div class="container py-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Henintsoa - Rado</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
       </div>
     </div>
-  </div>
-</div>
-</div> -->
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
