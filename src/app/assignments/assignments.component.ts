@@ -10,9 +10,12 @@ import { Subject } from '../subject/subject.model';
   styleUrls: [
     './assignments.component.css',
     './../../assets/css/fontface.css',
+    "./../../assets/vendor/icofont/icofont.min.css",
     './../../assets/vendor/boxicons/css/boxicons.min.css',
+    "./../../assets/vendor/owl.carousel/assets/owl.carousel.min.css",
     './../../assets/vendor/venobox/venobox.css',
-    './../../assets/vendor/aos/aos.css'
+    './../../assets/vendor/aos/aos.css',
+    './../../assets/css/style.css'
 ]
 
 })
