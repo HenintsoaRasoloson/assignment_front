@@ -7,7 +7,14 @@ import { Subject } from '../subject/subject.model';
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
-  styleUrls: ['./assignments.component.css'],
+  styleUrls: [
+    './assignments.component.css',
+    './../../assets/css/fontface.css',
+    './../../assets/vendor/boxicons/css/boxicons.min.css',
+    './../../assets/vendor/venobox/venobox.css',
+    './../../assets/vendor/aos/aos.css'
+]
+
 })
 export class AssignmentsComponent implements OnInit {
   assignments:Assignment[];
