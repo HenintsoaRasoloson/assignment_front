@@ -15,7 +15,6 @@ import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTabsModule} from '@angular/material/tabs';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AssignmentsComponent } from './assignments/assignments.component';
@@ -67,7 +66,6 @@ const routes:Routes = [
     AddAssignmentComponent,
     EditAssigmentComponent,
     SubjectComponent,
-    NgbModal, 
 
   ],
   imports: [

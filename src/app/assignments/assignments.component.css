@@ -24,3 +24,9 @@
 * License: https://bootstrapmade.com/license/
 */
 
+.cartes:hover {
+  color: #FFFFFF !important;
+}
+.cartes{
+  color:#000 !important;
+}

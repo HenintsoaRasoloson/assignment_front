@@ -109,7 +109,14 @@
   </div>
 </header><!-- End Header -->
 
-
+<div class="container">
+  <div class="row mt-4 mb-0 d-flex justify-content-start">
+      <a routerLink="/add" class="btn btn-secondary" style="color: white !important;">
+          Ajouter Assignment
+        <span style="font-weight: bolder;">+</span>
+      </a>
+  </div>
+</div>
 
 <main id="main">
   <!-- ======= Featured Services Section ======= -->
@@ -119,15 +126,17 @@
           <mat-tab label="Non Rendu ({{assignmentsNonRendu.length}})"> 
             <div class="row my-3 mx-3" id="donnees">
               <div *ngFor="let a of assignmentsNonRendu" class="col-md-6 col-lg-4 d-flex align-items-stretch mb-3">
+                <a class="cartes w-100 d-flex align-items-stretch" routerLink="/assignment/{{a.id}}">
                 <div class="icon-box w-100" data-aos="fade-up" data-aos-delay="100">
                   <div class="icon">
                     <img src="../../assets/img/file-type-angular.svg" style="height:50px; width:50px; object-fit: fill;" alt="IOS" />
                   </div>
-                  <h5 class="title"><a routerLink="/assignment/{{a.id}}" >{{a.nom}}</a></h5>
+                  <h5 class="title">{{a.nom}}</h5>
                   <h6>{{a.auteur}}</h6>
                   <p class="description">Date: {{a.dateDeRendu | date}}</p><br>
                   <p class="description">Professeur : <img class="rounded" src="../../assets/img/Galli.jpg" style="height:40px; width:40px; object-fit: fill;" alt="Prof"/> </p>
                 </div>
+                </a>
               </div>
             </div>
           </mat-tab>
@@ -209,30 +218,4 @@
     </div>
   </div>
 </footer><!-- End Footer -->
-
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      
-      <!-- Modal body -->
-      <div class="modal-body">
-        Modal body..
-      </div>
-      
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
 
