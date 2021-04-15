@@ -1,117 +1,146 @@
 <app-header></app-header>
-<main class="container">
-  <a routerLink="/add" class="ajouterBtn">
-    <button mat-flat-button color="accent">Ajouter un assignment</button>
-  </a>
-  <h1>Liste des assignments</h1>
-  <mat-divider></mat-divider>
-  <nav>
-    <button mat-raised-button color="primary" (click)="premierePage()">
-      Première
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="!hasPrevPage"
-      (click)="pagePrecedente()"
-    >
-      Prev
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="!hasNextPage"
-      (click)="pageSuivante()"
-    >
-      Suiv
-    </button>
-    <button mat-raised-button color="primary" (click)="dernierePage()">
-      Dernière
-    </button>
-  </nav>
-  <div class="main_container">
-    <div class="example-container">
-      <h2 class="red_text">NON RENDU ({{assignmentsNonRendu.length}})</h2>
-      <div
-        cdkDropList
-        #todoList="cdkDropList"
-        [cdkDropListData]="assignmentsNonRendu"
-        [cdkDropListConnectedTo]="[doneList]"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)"
-      >
-        <div class="example-box" *ngFor="let a of assignmentsNonRendu" cdkDrag>
-          <mat-card class="example-card">
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image"
-               style="background-image:url('../../assets/img/prof/{{a.matiere.image_prof}}')">
-              </div>
-              <mat-card-title>{{ a.nom }}</mat-card-title>
-              <mat-card-subtitle>Auteur : {{ a.auteur }}</mat-card-subtitle>
-              <mat-card-subtitle
-                >Matiere : {{ a.matiere.nom }}</mat-card-subtitle
-              >
-            </mat-card-header>
-            <img
-              mat-card-image
-              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-              alt="Photo of a Shiba Inu"
-            />
-            <mat-card-content>
-              <p>{{ a.dateDeRendu | date }}</p>
-              <p>{{ a.note }}</p>
-              <p>{{ a.remarques }}</p>
-              <p appNonRendu>Etat : {{ a.rendu ? "Rendu" : "Non Rendu" }}</p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
-      </div>
-    </div>
+<main class="container"><header id="header" class="header-fixee">
+  <div class="container d-flex align-items-center">
 
-    <div class="example-container">
-      <h2 class="green_text">RENDU ({{assignmentsRendu.length}})</h2>
-      <div
-        cdkDropList
-        #doneList="cdkDropList"
-        [cdkDropListData]="assignmentsRendu"
-        [cdkDropListConnectedTo]="[todoList]"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)"
-      >
-        <div class="example-box" *ngFor="let a of assignmentsRendu" cdkDrag>
-          <mat-card class="example-card">
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image"
-               style="background-image:url('../../assets/img/prof/{{a.matiere.image_prof}}')">
+    <h1 class="logo mr-auto"><a href="index.html">Assignment Management</a></h1>
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt=""></a>-->
+
+    <nav class="nav-menu d-none d-lg-block">
+      <ul>
+        <li class="active"><a href="index.html">Assignments</a></li>
+        <li><a href="#about">Données de base</a></li>
+        <li class="drop-down"><a href="">Profile</a>
+          <ul>
+            <li><a href="#">Drop Down 1</a></li>
+            <li class="drop-down"><a href="#">Deep Drop Down</a>
+              <ul>
+                <li><a href="#">Deep Drop Down 1</a></li>
+                <li><a href="#">Deep Drop Down 2</a></li>
+                <li><a href="#">Deep Drop Down 3</a></li>
+                <li><a href="#">Deep Drop Down 4</a></li>
+                <li><a href="#">Deep Drop Down 5</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Drop Down 2</a></li>
+            <li><a href="#">Drop Down 3</a></li>
+            <li><a href="#">Drop Down 4</a></li>
+          </ul>
+        </li>
+        <!--<li><a href="#contact">Contact</a></li>-->
+
+      </ul>
+    </nav><!-- .nav-menu -->
+
+  </div>
+</header><!-- End Header -->
+
+<div class="container">
+  <div class="row mt-4 mb-0 d-flex justify-content-start">
+      <a routerLink="/add" class="btn btn-secondary" style="color: white !important;">
+          Ajouter Assignment
+        <span style="font-weight: bolder;">+</span>
+      </a>
+  </div>
+</div>
+
+<main id="main">
+  <!-- ======= Featured Services Section ======= -->
+  <section id="featured-services" class="featured-services">
+    <div class="container" data-aos="fade-up">
+        <mat-tab-group mat-align-tabs="center">
+          <mat-tab label="Non Rendu ({{assignmentsNonRendu.length}})"> 
+            <div class="row my-3 mx-3" id="donnees">
+              <div *ngFor="let a of assignmentsNonRendu" class="col-md-6 col-lg-4 d-flex align-items-stretch mb-3">
+                <a class="cartes w-100 d-flex align-items-stretch" routerLink="/assignment/{{a.id}}">
+                <div class="icon-box w-100" data-aos="fade-up" data-aos-delay="100">
+                  <div class="icon">
+                    <img src="../../assets/img/file-type-angular.svg" style="height:50px; width:50px; object-fit: fill;" alt="IOS" />
+                  </div>
+                  <h5 class="title">{{a.nom}}</h5>
+                  <h6>{{a.auteur}}</h6>
+                  <p class="description">Date: {{a.dateDeRendu | date}}</p><br>
+                  <p class="description">Professeur : <img class="rounded" src="../../assets/img/Galli.jpg" style="height:40px; width:40px; object-fit: fill;" alt="Prof"/> </p>
+                </div>
+                </a>
               </div>
-              <mat-card-title>{{ a.nom }}</mat-card-title>
-              <mat-card-subtitle>Auteur : {{ a.auteur }}</mat-card-subtitle>
-              <mat-card-subtitle
-                >Matiere : {{ a.matiere.nom }}</mat-card-subtitle
-              >
-            </mat-card-header>
-            <img
-              mat-card-image
-              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-              alt="Photo of a Shiba Inu"
-            />
-            <mat-card-content>
-              <p>{{ a.dateDeRendu | date }}</p>
-              <p>{{ a.note }}</p>
-              <p>{{ a.remarques }}</p>
-              <p appRendu>Etat : {{ a.rendu ? "Rendu" : "Non Rendu" }}</p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-          </mat-card>
+            </div>
+          </mat-tab>
+          
+          <mat-tab label="Rendu ({{assignmentsRendu.length}})"> 
+            <div class="row my-3 mx-3" id="donnees">
+              <div *ngFor="let a of assignmentsRendu" class="col-md-6 col-lg-4 d-flex align-items-stretch mb-3">
+                <div class="icon-box w-100" data-aos="fade-up" data-aos-delay="100">
+                  <div class="icon">
+                    <img src="../../assets/img/file-type-angular.svg" style="height:50px; width:50px; object-fit: fill;" alt="IOS" />
+                  </div>
+                  <h5 class="title"><a routerLink="/assignment/{{a.id}}" >{{a.nom}}</a></h5>
+                  <h6>{{a.auteur}}</h6>
+                  <p class="description">Date: {{a.dateDeRendu | date}}</p><br>
+                  <p class="description">Professeur : <img class="rounded" src="../../assets/img/team/team-1.jpg" style="height:40px; width:40px; object-fit: fill;" alt="Prof"/> </p>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      
+      <!-- <div class="row" id="donnees">
+        <div *ngFor="let a of assignments" class="col-md-6 col-lg-4 d-flex align-items-stretch mb-3">
+          <div class="icon-box w-100" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon">
+              <img src="../../assets/img/file-type-angular.svg" style="height:50px; width:50px; object-fit: fill;" alt="IOS" />
+            </div>
+            <h4 class="title"><a routerLink="/assignment/{{a.id}}" >{{a.nom}}</a></h4>
+            <h5>{{a.auteur}}</h5>
+            <p class="description">Date: {{a.dateDeRendu | date}}</p><br>
+            <p class="description">Professeur : <img class="rounded-circle" src="../../assets/img/Galli.jpg" style="height:30px; width:30px; object-fit: fill;" alt="Prof"/> </p>
+          </div>
         </div>
-      </div>
+      </div> -->
+  <br>
+  <div class="row d-flex justify-content-end mb-5">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination ">
+      <li class="page-item">
+        <a class="page-link"  aria-label="Previous"(click)="premierePage()">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">premier</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" aria-label="Next"  [class.disabled]="!hasPrevPage" (click)="pagePrecedente()">
+        Précèdent
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" aria-label="Next"  [class.disabled]="!hasNextPage" (click)="pageSuivante()">
+        Suivant
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link"  aria-label="Next" (click)="dernierePage()">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">dernier</span>
+        </a>
+      </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+  
+  
+  </section><!-- End Featured Services Section -->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="fixed-bottom">
+  <div class="container py-4">
+    <div class="copyright">
+      &copy; Copyright <strong><span>BizLand</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
     </div>
   </div>
-</main>
+</footer><!-- End Footer -->

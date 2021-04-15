@@ -5,10 +5,21 @@ import { Assignment } from './assignment.model';
 import { Subject } from '../subject/subject.model';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
+
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
-  styleUrls: ['./assignments.component.css'],
+  styleUrls: [
+    './assignments.component.css',
+    './../../assets/css/fontface.css',
+    "./../../assets/vendor/icofont/icofont.min.css",
+    './../../assets/vendor/boxicons/css/boxicons.min.css',
+    "./../../assets/vendor/owl.carousel/assets/owl.carousel.min.css",
+    './../../assets/vendor/venobox/venobox.css',
+    './../../assets/vendor/aos/aos.css',
+    './../../assets/css/style.css'
+]
+
 })
 export class AssignmentsComponent implements OnInit {
   assignments:Assignment[];
@@ -22,7 +33,7 @@ export class AssignmentsComponent implements OnInit {
   prevPage: number;
   hasNextPage: boolean;
   nextPage: number;
-
+  closeResult = '';
   // on injecte le service de gestion des assignments
   constructor(private assignmentsService:AssignmentsService,
               private route:ActivatedRoute,
@@ -119,16 +130,24 @@ export class AssignmentsComponent implements OnInit {
       }
     });
   }
-  
 
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
-    }
-  }
+
+  // Modal
+  // private getDismissReason(reason: any): string {
+  //   if (reason === ModalDismissReasons.ESC) {
+  //     return 'by pressing ESC';
+  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+  //     return 'by clicking on a backdrop';
+  //   } else {
+  //     return `with: ${reason}`;
+  //   }
+  // }
+  // open(content) {
+  //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+  //     this.closeResult = `Closed with: ${result}`;
+  //   }, (reason) => {
+  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  //   });
+  // }
+
 }

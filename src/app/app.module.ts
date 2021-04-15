@@ -75,8 +75,10 @@ const routes:Routes = [
     AddAssignmentComponent,
     EditAssigmentComponent,
     SubjectComponent,
+
     LoginComponent,
     HeaderComponent
+
   ],
   imports: [
     BrowserModule,

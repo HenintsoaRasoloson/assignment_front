@@ -3,10 +3,15 @@ import { Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
 
+
 @Component({
   selector: 'app-add-assignment',
   templateUrl: './add-assignment.component.html',
-  styleUrls: ['./add-assignment.component.css'],
+  styleUrls: [
+    './add-assignment.component.css',
+    './../../../assets/assetsAjout/css/gsdk-bootstrap-wizard.css',
+    './../../../assets/assetsAjout/css/demo.css'
+  ],
 })
 export class AddAssignmentComponent implements OnInit {
   // Pour les champs du formulaire
