@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 20px; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.red_text{
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+.green_text{
+    text-decoration: underline;
+    text-decoration-color: green;
+}

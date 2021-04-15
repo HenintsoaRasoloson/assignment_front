@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
 import { Subject } from '../subject/subject.model';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -130,6 +131,7 @@ export class AssignmentsComponent implements OnInit {
     });
   }
 
+
   // Modal
   // private getDismissReason(reason: any): string {
   //   if (reason === ModalDismissReasons.ESC) {
@@ -147,4 +149,5 @@ export class AssignmentsComponent implements OnInit {
   //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
   //   });
   // }
+
 }

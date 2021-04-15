@@ -33,6 +33,10 @@ export class AppComponent {
     }
   }
 
+  Logout(){
+    this.authService.logOut();
+    this.router.navigate([""]);
+  }
   peuplerBD() {
     // version naive et simple
     //this.assignmentsService.peuplerBD();

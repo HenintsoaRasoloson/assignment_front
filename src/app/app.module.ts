@@ -15,6 +15,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 import { AssignmentsComponent } from './assignments/assignments.component';
@@ -29,13 +31,20 @@ import { AuthGuard } from './shared/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { SubjectComponent } from './subject/subject.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
 
 const routes:Routes = [
   {
     // indique que http://localhost:4200 sans rien ou avec un "/" à la fin
     // doit afficher le composant AssignmentsComponent (celui qui affiche la liste)
     path:"",
-    component:AssignmentsComponent
+    component:LoginComponent
+  },
+  {
+    // idem avec  http://localhost:4200/home
+    path:"login",
+    component:LoginComponent
   },
   {
     // idem avec  http://localhost:4200/home
@@ -67,6 +76,9 @@ const routes:Routes = [
     EditAssigmentComponent,
     SubjectComponent,
 
+    LoginComponent,
+    HeaderComponent
+
   ],
   imports: [
     BrowserModule,
@@ -78,6 +90,8 @@ const routes:Routes = [
     MatSlideToggleModule,
     MatTabsModule,
     MatStepperModule,
+    MatToolbarModule,
+    DragDropModule,
     RouterModule.forRoot(routes), HttpClientModule
   ],
   providers: [],
