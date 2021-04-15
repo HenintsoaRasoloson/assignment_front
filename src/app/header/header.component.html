@@ -1,0 +1,39 @@
+<p>
+  <mat-toolbar color="primary">
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+      (click)="Home()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="white_text">{{ title }}</span>
+    <span class="example-spacer"></span>
+    <button mat-button color="primary" (click)="peuplerBD()">
+      <span class="white_text">Peupler BD</span>
+    </button>
+    <button mat-button color="primary" (click)="peuplerBDSubject()">
+      <span class="white_text">Peupler Matières</span>
+    </button>
+    <button mat-button color="primary" (click)="peuplerBDSubject()">
+      <span class="white_text">{{ logged.login }} connecté</span>
+    </button>
+    <button
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+      (click)="Home()"
+    >
+      <mat-icon>home</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+      (click)="Logout()"
+    >
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>
