@@ -82,8 +82,8 @@
 
     <nav class="nav-menu d-none d-lg-block">
       <ul>
-        <li class="active"><a href="index.html">Tous les assignments</a></li>
-        <li><a href="#about">Rendu / Non Rendu </a></li>
+        <li class="active"><a href="index.html">Assignments</a></li>
+        <li><a href="#about">Données de base</a></li>
         <li class="drop-down"><a href="">Profile</a>
           <ul>
             <li><a href="#">Drop Down 1</a></li>
@@ -112,69 +112,78 @@
 
 
 <main id="main">
-
   <!-- ======= Featured Services Section ======= -->
   <section id="featured-services" class="featured-services">
     <div class="container" data-aos="fade-up">
-
-      <div class="row">
-        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-          <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon"><i class="bx bxl-dribbble"></i></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+        <mat-tab-group mat-align-tabs="center">
+          <mat-tab label="Non Rendu ({{assignmentsNonRendu.length}})"> 
+            <div class="row my-3 mx-3" id="donnees">
+              <div *ngFor="let a of assignmentsNonRendu" class="col-md-6 col-lg-4 d-flex align-items-stretch mb-3">
+                <div class="icon-box w-100" data-aos="fade-up" data-aos-delay="100">
+                  <div class="icon">
+                    <img src="../../assets/img/file-type-angular.svg" style="height:50px; width:50px; object-fit: fill;" alt="IOS" />
+                  </div>
+                  <h5 class="title"><a routerLink="/assignment/{{a.id}}" >{{a.nom}}</a></h5>
+                  <h6>{{a.auteur}}</h6>
+                  <p class="description">Date: {{a.dateDeRendu | date}}</p><br>
+                  <p class="description">Professeur : <img class="rounded" src="../../assets/img/Galli.jpg" style="height:40px; width:40px; object-fit: fill;" alt="Prof"/> </p>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          
+          <mat-tab label="Rendu ({{assignmentsRendu.length}})"> 
+            <div class="row my-3 mx-3" id="donnees">
+              <div *ngFor="let a of assignmentsRendu" class="col-md-6 col-lg-4 d-flex align-items-stretch mb-3">
+                <div class="icon-box w-100" data-aos="fade-up" data-aos-delay="100">
+                  <div class="icon">
+                    <img src="../../assets/img/file-type-angular.svg" style="height:50px; width:50px; object-fit: fill;" alt="IOS" />
+                  </div>
+                  <h5 class="title"><a routerLink="/assignment/{{a.id}}" >{{a.nom}}</a></h5>
+                  <h6>{{a.auteur}}</h6>
+                  <p class="description">Date: {{a.dateDeRendu | date}}</p><br>
+                  <p class="description">Professeur : <img class="rounded" src="../../assets/img/team/team-1.jpg" style="height:40px; width:40px; object-fit: fill;" alt="Prof"/> </p>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      
+      <!-- <div class="row" id="donnees">
+        <div *ngFor="let a of assignments" class="col-md-6 col-lg-4 d-flex align-items-stretch mb-3">
+          <div class="icon-box w-100" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon">
+              <img src="../../assets/img/file-type-angular.svg" style="height:50px; width:50px; object-fit: fill;" alt="IOS" />
+            </div>
+            <h4 class="title"><a routerLink="/assignment/{{a.id}}" >{{a.nom}}</a></h4>
+            <h5>{{a.auteur}}</h5>
+            <p class="description">Date: {{a.dateDeRendu | date}}</p><br>
+            <p class="description">Professeur : <img class="rounded-circle" src="../../assets/img/Galli.jpg" style="height:30px; width:30px; object-fit: fill;" alt="Prof"/> </p>
           </div>
         </div>
-
-        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-          <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i class="bx bx-file"></i></div>
-            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-          <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon"><i class="bx bx-tachometer"></i></div>
-            <h4 class="title"><a href="">Magni Dolores</a></h4>
-            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-          <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
-            <div class="icon"><i class="bx bx-world"></i></div>
-            <h4 class="title"><a href="">Nemo Enim</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-          </div>
-        </div>
-
-      </div>
-  <br><br>
-  <div class="row d-flex justify-content-end">
+      </div> -->
+  <br>
+  <div class="row d-flex justify-content-end mb-5">
     <nav aria-label="Page navigation example">
       <ul class="pagination ">
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
+        <a class="page-link"  aria-label="Previous"(click)="premierePage()">
         <span aria-hidden="true">&laquo;</span>
         <span class="sr-only">premier</span>
         </a>
       </li>
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&lt;</span>
-        <span class="sr-only">précèdant</span>
+        <a class="page-link" aria-label="Next"  [class.disabled]="!hasPrevPage" (click)="pagePrecedente()">
+        Précèdent
         </a>
       </li>
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&gt;</span>
-        <span class="sr-only">suivant</span>
+        <a class="page-link" aria-label="Next"  [class.disabled]="!hasNextPage" (click)="pageSuivante()">
+        Suivant
         </a>
       </li>
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
+        <a class="page-link"  aria-label="Next" (click)="dernierePage()">
         <span aria-hidden="true">&raquo;</span>
         <span class="sr-only">dernier</span>
         </a>
@@ -182,7 +191,7 @@
       </ul>
     </nav>
   </div>
-    </div>
+</div>
   
   
   </section><!-- End Featured Services Section -->
@@ -200,6 +209,30 @@
     </div>
   </div>
 </footer><!-- End Footer -->
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
 
 
