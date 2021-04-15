@@ -4,6 +4,16 @@ Frontend Angular/cli pour le cours angular MBDS Madagascar 2021
 - Fait par
     - Henintsoa RASOLOSON
     - Rado Nirina RANDRIAMANANA
+# Instructions
+Arrivé à la page de connexion, vous avez le choix entre vous connecter avec les identifiants/mots de passe ou creer votre compte temporaire d'abord.
+acces par defaut, 
+- login : admin, mdp: admin
+- root/root
+- mbuffa/mbuffa.
+
+Si vous décider de creer votre propre compte, ce compte sera juste stocké temporairement, et peut ne plus exister lors de votre prochaine connexion.
+Une fois votre compte créer, on vous invite à repasser à l'onglet de connexion, et ainsi pouvoir vous connecter sur le formulaire avec les identifiants de votre nouveau compte
+
 # AssignmentApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
