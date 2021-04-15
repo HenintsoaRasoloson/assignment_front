@@ -1,8 +1,7 @@
+<app-header></app-header>
 <main class="container">
   <a routerLink="/add" class="ajouterBtn">
-    <button mat-flat-button color="accent">
-      Ajouter un assignment
-    </button>
+    <button mat-flat-button color="accent">Ajouter un assignment</button>
   </a>
   <h1>Liste des assignments</h1>
   <mat-divider></mat-divider>
@@ -10,64 +9,109 @@
     <button mat-raised-button color="primary" (click)="premierePage()">
       Première
     </button>
-    <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="pagePrecedente()">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!hasPrevPage"
+      (click)="pagePrecedente()"
+    >
       Prev
     </button>
-    <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="pageSuivante()">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!hasNextPage"
+      (click)="pageSuivante()"
+    >
       Suiv
     </button>
     <button mat-raised-button color="primary" (click)="dernierePage()">
       Dernière
     </button>
   </nav>
-  <mat-tab-group>
-    <mat-tab label="Non Rendu ({{assignmentsNonRendu.length}})"> 
-      <mat-list *ngFor="let a of assignmentsNonRendu">
-        <nav>
-          <a routerLink="/assignment/{{a.id}}">
-            <h3 mat-subheader>{{a.dateDeRendu | date}}</h3>
-            <mat-list-item>
-              <mat-divider></mat-divider>
-    
-              <p *ngIf="a.rendu; else nonsoumis" appRendu>
-                {{a.nom}}, rendu par <b>{{a.auteur}}</b>
-              </p>
-              <ng-template #nonsoumis>
-                <p appNonRendu>
-                  {{a.nom}}, non encore rendu par <b>{{a.auteur}}</b>.
-                </p>
-              </ng-template>
-    
-            </mat-list-item>
-          </a>
-        </nav>
-      </mat-list>
-    </mat-tab>
-    
-    <mat-tab label="Rendu ({{assignmentsRendu.length}})"> 
-      <mat-list *ngFor="let a of assignmentsRendu">
-      <nav>
-        <a routerLink="/assignment/{{a.id}}">
-          <h3 mat-subheader>{{a.dateDeRendu | date}}</h3>
-          <mat-list-item>
-            <mat-divider></mat-divider>
-  
-            <p *ngIf="a.rendu; else nonsoumis" appRendu>
-              {{a.nom}}, rendu par <b>{{a.auteur}}</b>
-            </p>
-            <ng-template #nonsoumis>
-              <p appNonRendu>
-                {{a.nom}}, non encore rendu par <b>{{a.auteur}}</b>.
-              </p>
-            </ng-template>
-  
-          </mat-list-item>
-        </a>
-      </nav>
-    </mat-list> </mat-tab>
-    
-    
-  </mat-tab-group>
+  <div class="main_container">
+    <div class="example-container">
+      <h2 class="red_text">NON RENDU ({{assignmentsNonRendu.length}})</h2>
+      <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="assignmentsNonRendu"
+        [cdkDropListConnectedTo]="[doneList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let a of assignmentsNonRendu" cdkDrag>
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"
+               style="background-image:url('../../assets/img/prof/{{a.matiere.image_prof}}')">
+              </div>
+              <mat-card-title>{{ a.nom }}</mat-card-title>
+              <mat-card-subtitle>Auteur : {{ a.auteur }}</mat-card-subtitle>
+              <mat-card-subtitle
+                >Matiere : {{ a.matiere.nom }}</mat-card-subtitle
+              >
+            </mat-card-header>
+            <img
+              mat-card-image
+              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+              alt="Photo of a Shiba Inu"
+            />
+            <mat-card-content>
+              <p>{{ a.dateDeRendu | date }}</p>
+              <p>{{ a.note }}</p>
+              <p>{{ a.remarques }}</p>
+              <p appNonRendu>Etat : {{ a.rendu ? "Rendu" : "Non Rendu" }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button>LIKE</button>
+              <button mat-button>SHARE</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
 
-  
+    <div class="example-container">
+      <h2 class="green_text">RENDU ({{assignmentsRendu.length}})</h2>
+      <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="assignmentsRendu"
+        [cdkDropListConnectedTo]="[todoList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let a of assignmentsRendu" cdkDrag>
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"
+               style="background-image:url('../../assets/img/prof/{{a.matiere.image_prof}}')">
+              </div>
+              <mat-card-title>{{ a.nom }}</mat-card-title>
+              <mat-card-subtitle>Auteur : {{ a.auteur }}</mat-card-subtitle>
+              <mat-card-subtitle
+                >Matiere : {{ a.matiere.nom }}</mat-card-subtitle
+              >
+            </mat-card-header>
+            <img
+              mat-card-image
+              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+              alt="Photo of a Shiba Inu"
+            />
+            <mat-card-content>
+              <p>{{ a.dateDeRendu | date }}</p>
+              <p>{{ a.note }}</p>
+              <p>{{ a.remarques }}</p>
+              <p appRendu>Etat : {{ a.rendu ? "Rendu" : "Non Rendu" }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button>LIKE</button>
+              <button mat-button>SHARE</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>

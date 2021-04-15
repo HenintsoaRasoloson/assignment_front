@@ -74,6 +74,7 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   isAdmin() {
+    console.log("isadmin",this.authService.admin);
     return this.authService.admin;
   }
   isMarked(){
