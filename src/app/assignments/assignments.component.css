@@ -1,8 +1,32 @@
-.container {
+/* .container {
   display: flex;
   flex-direction: column;
 }
 
 .ajouterBtn {
   align-self: flex-end;
+} */
+/* @mport 'assets/vendor/icofont/icofont.min.css';
+<link href="" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet"> */
+
+  /**
+* Template Name: BizLand - v1.2.1
+* Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+.cartes:hover {
+  color: #FFFFFF !important;
+}
+.cartes{
+  color:#000 !important;
 }

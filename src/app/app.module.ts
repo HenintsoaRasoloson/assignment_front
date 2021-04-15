@@ -65,7 +65,8 @@ const routes:Routes = [
     AssignmentDetailComponent,
     AddAssignmentComponent,
     EditAssigmentComponent,
-    SubjectComponent
+    SubjectComponent,
+
   ],
   imports: [
     BrowserModule,
